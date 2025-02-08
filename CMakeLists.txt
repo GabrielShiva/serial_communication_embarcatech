@@ -35,7 +35,7 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(serial_communication_project main.c )
+add_executable(serial_communication_project src/main.c src/ssd1306.c)
 
 pico_set_program_name(serial_communication_project "serial_communication_project")
 pico_set_program_version(serial_communication_project "0.1")
