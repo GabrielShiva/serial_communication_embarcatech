@@ -70,3 +70,7 @@ O código está organizado em várias funções principais:
 git clone https://github.com/GabrielShiva/serial_communication_embarcatech.git
 ```
 2. No VsCode, clique na extensão `Raspberry Pi Pico W`, depois em *Importar Projeto*, selecione a pasta do projeto, escolha a versão do SDK (2.1.0) e, por fim, em *Importar*.
+
+## Vídeo de Apresentação
+
+Assita ao vídeo com a apresentação do projeto (clicando aqui)[https://youtu.be/0n7IPdrnEfA].
