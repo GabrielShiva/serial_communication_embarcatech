@@ -56,6 +56,8 @@ target_include_directories(serial_communication_project PRIVATE
 # Add any user requested libraries
 target_link_libraries(serial_communication_project 
         hardware_i2c
+        hardware_uart
+        hardware_clocks
         )
 
 pico_add_extra_outputs(serial_communication_project)
