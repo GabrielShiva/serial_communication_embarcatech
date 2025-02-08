@@ -37,6 +37,9 @@ pico_sdk_init()
 
 add_executable(serial_communication_project src/main.c src/ssd1306.c)
 
+# Then generate PIO header
+pico_generate_pio_header(serial_communication_project ${CMAKE_CURRENT_LIST_DIR}/ws2812b.pio)
+
 pico_set_program_name(serial_communication_project "serial_communication_project")
 pico_set_program_version(serial_communication_project "0.1")
 
@@ -57,7 +60,9 @@ target_include_directories(serial_communication_project PRIVATE
 target_link_libraries(serial_communication_project 
         hardware_i2c
         hardware_uart
+        hardware_pio
         hardware_clocks
+        hardware_irq
         )
 
 pico_add_extra_outputs(serial_communication_project)
