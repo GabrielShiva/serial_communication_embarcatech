@@ -43,6 +43,7 @@ ssd1306_t ssd; // Inicializa a estrutura do display
 static volatile absolute_time_t last_time_btn_press = {0};
 static volatile char buffer = '\0';
 
+// implementação da função para interface i2c para comunicação com o display OLED
 void i2c_setup() {
     // I2C Initialisation. Using it at 400Khz.
     i2c_init(I2C_ID, 400 * 1000);
@@ -62,6 +63,7 @@ void uart_setup() {
     gpio_set_function(UART_RX_PIN, GPIO_FUNC_UART); // Configura o pino 1 para RX
 }
 
+// inicialização do display OLED utilizando o biblioteca ssd1306.h e ssd1306.c 
 void oled_setup() {
     ssd1306_init(&ssd, WIDTH, HEIGHT, false, SSD_1306_ADDR, I2C_ID); // Inicializa o display
     ssd1306_config(&ssd); // Configura o display
@@ -72,6 +74,7 @@ void oled_setup() {
     ssd1306_send_data(&ssd);
 }
 
+// inicialização dos LEDs
 void leds_setup() {
     // inicializa o LED verde
     gpio_init(GREEN_LED);
@@ -84,6 +87,7 @@ void leds_setup() {
     gpio_put(BLUE_LED, 0);
 }
 
+// inicialização dos botões
 void btns_setup() {
     // inicializa os botões
     gpio_init(BTN_A);
@@ -95,6 +99,7 @@ void btns_setup() {
     gpio_pull_up(BTN_B);
 }
 
+// define função para inserir sprite na matriz de LEDs
 void insert_sprite(int sprite_index) {
     npLED_t leds[LED_COUNT];
     int rgb_matrix[MATRIX_ROWS][MATRIX_COLS][3];
@@ -104,6 +109,7 @@ void insert_sprite(int sprite_index) {
     matrizWrite(leds);
 }
 
+// define função de tratamento para interrupção dos botões A e B
 void gpio_irq_handler(uint gpio, uint32_t events) {
     absolute_time_t current_time = get_absolute_time(); // captura o tempo atual
 
@@ -145,7 +151,6 @@ int main() {
     oled_setup();
     leds_setup();
     btns_setup();
-    uart_setup();
 
     // limpa a matriz de leds
     npClear(leds);
